@@ -10,13 +10,13 @@ public class Player {
 	
 	private List<Card> playingCards;
 	private List<Card> totalPlayingCards;
-	private List<Card> backUpCards;
+	private List<Card> fallBackCards;
 	private String playerName;
-	public Player(List<Card> playingCards, List<Card> totalPlayingCards, List<Card> backUpCards, String playerName) {
+	public Player(List<Card> playingCards, List<Card> totalPlayingCards, List<Card> fallBackCards, String playerName) {
 		super();
 		this.playingCards = playingCards;
 		this.totalPlayingCards = totalPlayingCards;
-		this.backUpCards = backUpCards;
+		this.fallBackCards = fallBackCards;
 		this.playerName = playerName;
 	}
 	
@@ -39,11 +39,11 @@ public class Player {
 	public void setTotalPlayingCards(List<Card> totalPlayingCards) {
 		this.totalPlayingCards = totalPlayingCards;
 	}
-	public List<Card> getBackUpCards() {
-		return backUpCards;
+	public List<Card> getfallBackCards() {
+		return fallBackCards;
 	}
-	public void setBackUpCards(List<Card> backUpCards) {
-		this.backUpCards = backUpCards;
+	public void setfallBackCards(List<Card> backUpCards) {
+		this.fallBackCards = backUpCards;
 	}
 	public String getPlayerName() {
 		return playerName;
@@ -55,8 +55,8 @@ public class Player {
 
 	@Override
 	public String toString() {
-		return "Player [playingCards=" + playingCards + ", totalPlayingCards=" + totalPlayingCards + ", backUpCards="
-				+ backUpCards + ", playerName=" + playerName + "]";
+		return "Player [playingCards=" + playingCards + ", totalPlayingCards=" + totalPlayingCards + ", fallbackCards="
+				+ fallBackCards + ", playerName=" + playerName + "]";
 	}
 	
 	

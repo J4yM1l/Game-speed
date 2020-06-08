@@ -8,11 +8,11 @@ import com.speed.Card;
 
 public class CardFactory {
 	
-	private List<Card> spades = new ArrayList<Card>();	
-
-	public List<Card> getSpades() {
-		var cardValues = List.of("A","2","3","4","5","6","7","8","9","10","K","Q","J");
-		var cardTypes = List.of("Spade", "Club","Heart","Diamond");
+	private ArrayList<Card> cardDecks = new ArrayList<Card>(52);	
+	//currently creates 52 decks of cards
+	public ArrayList<Card> getCardDecks() {
+		var cardValues = Arrays.asList("A","2","3","4","5","6","7","8","9","10","K","Q","J");
+		var cardTypes = Arrays.asList("Spade", "Club","Heart","Diamond");
 		String color[] = {"Black","Red"};
 		cardColor: for (int c = 0; c < color.length; c++) {
 			
@@ -26,11 +26,11 @@ public class CardFactory {
 			}
 			for(String value: cardValues) {
 
-					spades.add(new Card(color[c], cardTypes.get(aType), value));			
+				cardDecks.add(new Card(color[c], cardTypes.get(aType), value));			
 			}
 		}
 	}
-		return spades;
+		return cardDecks;
 	}
 	
 	public int testing(int a, int b) {

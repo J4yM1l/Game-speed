@@ -51,7 +51,7 @@ public class CardFactoryTest {
 	}
 	
 	@Test
-	public void getSpades() {
+	public void testCardDecks() {
 		Card c1 = new Card("Black", "Spade","A");
 		Card c2 = new Card("Red", "Heart","2");
 		Card c3 = new Card("Black", "Club","3");		
@@ -61,7 +61,7 @@ public class CardFactoryTest {
 		assertThat("List of cards ",actual, is(expected));
 		
 		//3. Check List Size
-		assertThat("Get spades size",cf.getSpades().size(), is(52));
+		assertThat("Get spades size",cf.getCardDecks().size(), is(52));
 	}
 
 }

@@ -2,25 +2,18 @@ package com.speed.gameManager;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
-
 import com.speed.Card;
-import com.speed.cardfactory.Player;
 
 public class GameManager {
+		
+	private ArrayList<Card> decks;	
+	private ArrayList<Card> reshuffledCard;
+	private ArrayList<Card> totalPlayingCards = new ArrayList<Card>(25);	
 	
-	private int numberOfPlayers;
-	private List<Card> decks;
-	private Player player;
-	private List<Card> dashBoard = new ArrayList<Card>();
-	private List<Card> reshuffledCard;
-	private List<Card> totalPlayingCards = new ArrayList<Card>();
-	private List<Card> playingCards = new ArrayList<Card>();
-	public GameManager(List<Card> decks) {
-		super();
-//		this.numberOfPlayers = numberOfPlayers;
+	public GameManager(ArrayList<Card> decks) {
+//		super();		
 		this.decks = decks;
-		this.reshuffledCard = reshuffleCard(this.decks);
+		this.reshuffledCard = reshuffleCards(this.decks);
 		
 	}
 	
@@ -31,30 +24,52 @@ public class GameManager {
 	}
 
 
-	public List<Card> getTotalPlayingCards() {
-		for(int i = 0; i<20; i++) {
-			totalPlayingCards.add(this.reshuffledCard.get(i));
-			this.reshuffledCard.remove(i);
-		}
+	public ArrayList<Card> getTotalPlayingCards() {
+		while(!(this.reshuffledCard.isEmpty()) && totalPlayingCards.size()<25) {
+			totalPlayingCards.add(this.reshuffledCard.get(0));			
+			this.reshuffledCard.remove(0);			
+		}			
+		
 		return totalPlayingCards;
 	}
 	
-	public List<Card> getPlayingCards() {
-		for(int i = 0; i<5; i++) {
-			playingCards.add(totalPlayingCards.get(i));
-			totalPlayingCards.remove(i);
+	
+	public ArrayList<Card> getPlayingCards() {
+		ArrayList<Card> playingCards = new ArrayList<Card>(5);
+		int count = 0;
+		while(!(totalPlayingCards.isEmpty()) && count<5) {			
+			playingCards.add(totalPlayingCards.get(0));			
+			totalPlayingCards.remove(0);
+			count++;
 		}		
 		return playingCards;
 	}
-	public List<Card> getDashBoard() {
+	
+	public ArrayList<Card> getfallBackCards() {
+		ArrayList<Card> fallBackCards = new ArrayList<Card>(5);		
+		int count = 0;
+		while(!(totalPlayingCards.isEmpty()) && count<5) {			
+			fallBackCards.add(totalPlayingCards.get(0));			
+			totalPlayingCards.remove(0);
+			count++;
+		}			
+		return fallBackCards;
+	}
+	
+	public ArrayList<Card> getDashBoard() {
+		ArrayList<Card> dashBoard = new ArrayList<Card>(2);
+		while(!(totalPlayingCards.isEmpty()) && dashBoard.size()<2) {
+			dashBoard.add(totalPlayingCards.get(0));
+			totalPlayingCards.remove(0);
+		}		
 		
 		return dashBoard;
 	}
-	public void setDashBoard(List<Card> dashBoard) {
-		this.dashBoard = dashBoard;
-	}
+//	public void setDashBoard(List<Card> dashBoard) {
+//		this.dashBoard = dashBoard;
+//	}
 	
-	private List<Card> reshuffleCard(List<Card> cDeck){
+	private ArrayList<Card> reshuffleCards(ArrayList<Card> cDeck){
 		Collections.shuffle(cDeck);
 		return cDeck;
 		
