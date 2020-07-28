@@ -7,7 +7,7 @@ public class Card {
 	private final String val;
 	
 	public Card(String color, String type, String val) {
-		super();
+//		super();
 		this.color = color;
 		this.type = type;
 		this.val = val;

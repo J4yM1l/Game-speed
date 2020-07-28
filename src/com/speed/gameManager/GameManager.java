@@ -9,7 +9,7 @@ public class GameManager {
 	private ArrayList<Card> decks;	
 	private ArrayList<Card> reshuffledCard;
 	private ArrayList<Card> totalPlayingCards = new ArrayList<Card>(25);	
-	
+	private ArrayList<Card> dashBoard = new ArrayList<Card>(27);
 	public GameManager(ArrayList<Card> decks) {
 //		super();		
 		this.decks = decks;
@@ -19,7 +19,7 @@ public class GameManager {
 	
 	
 	public GameManager() {
-		super();
+//		super();
 		// TODO Auto-generated constructor stub
 	}
 
@@ -56,18 +56,26 @@ public class GameManager {
 		return fallBackCards;
 	}
 	
-	public ArrayList<Card> getDashBoard() {
-		ArrayList<Card> dashBoard = new ArrayList<Card>(2);
-		while(!(totalPlayingCards.isEmpty()) && dashBoard.size()<2) {
-			dashBoard.add(totalPlayingCards.get(0));
-			totalPlayingCards.remove(0);
+	public ArrayList<Card> setDashBoard() throws Exception {
+		
+		if(dashBoard.isEmpty()) {
+			dashBoard.add(reshuffledCard.get(0));
+//			dashBoard.add(reshuffledCard.get(1));
+			reshuffledCard.remove(0);
+//			reshuffledCard.remove(1);
+			return dashBoard;
 		}		
 		
-		return dashBoard;
+		throw new Exception("Cards already on dashboard");
 	}
-//	public void setDashBoard(List<Card> dashBoard) {
-//		this.dashBoard = dashBoard;
-//	}
+	public void setDashBoard(Card aCard) {
+		if(!dashBoard.isEmpty()) {
+			this.dashBoard.add(aCard);
+		}else {
+			System.out.println("DashBoard card is Full");			
+		}
+		
+	}
 	
 	private ArrayList<Card> reshuffleCards(ArrayList<Card> cDeck){
 		Collections.shuffle(cDeck);

@@ -16,7 +16,7 @@ public class PlayersGenerator {
 			playingCards = gm.getPlayingCards();
 			fallBackCards = gm.getfallBackCards();
 			
-			String pName = "p"+(i+1);
+			String pName = "Player"+(i+1);
 			players.put(pName, new Player(playingCards,
 					totalPlayingCards,fallBackCards,pName));			
 		}
